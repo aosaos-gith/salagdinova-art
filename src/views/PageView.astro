@@ -1,0 +1,77 @@
+---
+import { getSeoMeta, getTranslations } from "emdash";
+import { Image, PortableText } from "emdash/ui";
+import Base from "../layouts/Base.astro";
+import { isLocale, localePath, t, type Locale } from "../i18n";
+import { getPage } from "../utils/content";
+import { absoluteImageUrl } from "../utils/media";
+
+interface Props {
+	locale: Locale;
+	slug: string;
+}
+const { locale, slug } = Astro.props;
+
+// Page slugs never contain dots: /favicon.ico and the like are not pages.
+// The "home" page is shown at /, so its own URL (used by admin previews) goes there.
+if (slug === "home") return Astro.redirect(localePath(locale, "/") + Astro.url.search);
+if (!slug || slug.includes(".")) {
+	return Astro.rewrite("/404");
+}
+
+const { entry: page, error, cacheHint } = await getPage(slug, locale);
+if (error) return new Response("Could not load the page", { status: 500 });
+if (!page) return Astro.rewrite("/404");
+if (Astro.cache?.enabled) Astro.cache.set(cacheHint);
+
+const alternates: Partial<Record<Locale, string>> = {};
+try {
+	const { translations } = await getTranslations("pages", page.data.id);
+	for (const tr of translations ?? []) {
+		if (tr.status === "published" && tr.slug && isLocale(tr.locale)) {
+			alternates[tr.locale] = localePath(tr.locale, `/${tr.slug}`);
+		}
+	}
+} catch {
+	// Same path in every language.
+}
+
+const { title, image, content } = page.data;
+const seo = getSeoMeta(page, {
+	siteUrl: Astro.url.origin,
+	path: localePath(locale, `/${slug}`),
+	defaultOgImage: image ? absoluteImageUrl(image, Astro.url.origin) : undefined,
+});
+---
+
+<Base
+	locale={locale}
+	title={title}
+	description={seo.description}
+	image={seo.ogImage}
+	robots={seo.robots}
+	alternates={alternates}
+	content={{ collection: "pages", id: page.data.id, slug }}
+>
+	<article class="page">
+		<h1 class="page__title">{title}</h1>
+		<div class="page__body">
+			{
+				image && (
+					<figure class="page__image">
+						<Image image={image} sizes="(min-width: 900px) 40vw, 100vw" priority />
+					</figure>
+				)
+			}
+			{
+				content && content.length > 0 ? (
+					<div class="prose">
+						<PortableText value={content} />
+					</div>
+				) : (
+					<p>{t(locale, "comingSoon")}</p>
+				)
+			}
+		</div>
+	</article>
+</Base>

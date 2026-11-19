@@ -1,0 +1,102 @@
+---
+/**
+ * Renders a project's images in the order set in the admin.
+ *
+ * Consecutive images with the same background form one band (black or white).
+ * Inside a band, "Half width" images pair up side by side; any other size
+ * takes a row of its own.
+ */
+import { Image } from "emdash/ui";
+import { localizedCaption, type Locale } from "../i18n";
+
+type Media = Parameters<typeof Image>[0]["image"];
+
+interface FigureItem {
+	image?: Media | null;
+	caption?: string | null;
+	caption_it?: string | null;
+	caption_ru?: string | null;
+	background?: string | null;
+	size?: string | null;
+}
+
+interface Props {
+	items: FigureItem[];
+	locale: Locale;
+}
+
+const { items, locale } = Astro.props;
+
+type Size = "full" | "wide" | "half" | "narrow";
+type Tone = "dark" | "light";
+
+const toSize = (value?: string | null): Size => {
+	const v = (value ?? "").toLowerCase();
+	if (v.startsWith("half")) return "half";
+	if (v.startsWith("wide")) return "wide";
+	if (v.startsWith("narrow")) return "narrow";
+	return "full";
+};
+const toTone = (value?: string | null): Tone =>
+	(value ?? "").toLowerCase().startsWith("black") || value === "dark" ? "dark" : "light";
+
+interface Fig {
+	image: Media;
+	caption?: string;
+	size: Size;
+}
+interface Row {
+	size: Size;
+	figs: Fig[];
+}
+interface Band {
+	tone: Tone;
+	rows: Row[];
+}
+
+const bands: Band[] = [];
+for (const item of items) {
+	if (!item?.image) continue;
+	const tone = toTone(item.background);
+	const fig: Fig = {
+		image: item.image,
+		caption: localizedCaption(locale, item),
+		size: toSize(item.size),
+	};
+	let band = bands.at(-1);
+	if (!band || band.tone !== tone) {
+		band = { tone, rows: [] };
+		bands.push(band);
+	}
+	const last = band.rows.at(-1);
+	if (fig.size === "half" && last?.size === "half" && last.figs.length === 1) {
+		last.figs.push(fig);
+	} else {
+		band.rows.push({ size: fig.size, figs: [fig] });
+	}
+}
+
+const sizes: Record<Size, string> = {
+	full: "(min-width: 1600px) 1520px, 100vw",
+	wide: "(min-width: 1600px) 1200px, 90vw",
+	half: "(min-width: 760px) 50vw, 100vw",
+	narrow: "(min-width: 760px) 45vw, 100vw",
+};
+---
+
+{
+	bands.map((band) => (
+		<section class:list={["band", `band--${band.tone}`]}>
+			{band.rows.map((row) => (
+				<div class:list={["row", `row--${row.size}`, row.figs.length === 2 && "row--pair"]}>
+					{row.figs.map((fig) => (
+						<figure class="fig">
+							<Image image={fig.image} sizes={sizes[fig.size]} />
+							{fig.caption && <figcaption>{fig.caption}</figcaption>}
+						</figure>
+					))}
+				</div>
+			))}
+		</section>
+	))
+}

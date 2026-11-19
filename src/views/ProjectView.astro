@@ -1,0 +1,104 @@
+---
+import { getSeoMeta, getTranslations } from "emdash";
+import { Image, PortableText } from "emdash/ui";
+import Base from "../layouts/Base.astro";
+import Credits from "../components/Credits.astro";
+import Figures from "../components/Figures.astro";
+import { isLocale, localePath, t, type Locale } from "../i18n";
+import { getProject, getProjects } from "../utils/content";
+import { absoluteImageUrl, isLandscape } from "../utils/media";
+
+interface Props {
+	locale: Locale;
+	slug: string;
+}
+const { locale, slug } = Astro.props;
+
+const { entry: project, error, cacheHint } = await getProject(slug, locale);
+if (error) return new Response("Could not load the project", { status: 500 });
+if (!project) return Astro.rewrite("/404");
+
+const projectsResult = await getProjects(locale);
+if (Astro.cache?.enabled) {
+	Astro.cache.set(cacheHint);
+	if (projectsResult.cacheHint) Astro.cache.set(projectsResult.cacheHint);
+}
+const all = projectsResult.entries;
+const index = all.findIndex((p) => p.data.id === project.data.id || p.data.slug === slug);
+const next = all.length > 1 ? all[(index + 1) % all.length] : undefined;
+
+// Links to the same project in the other languages.
+const alternates: Partial<Record<Locale, string>> = {};
+try {
+	const { translations } = await getTranslations("projects", project.data.id);
+	for (const tr of translations ?? []) {
+		if (tr.status === "published" && tr.slug && isLocale(tr.locale)) {
+			alternates[tr.locale] = localePath(tr.locale, `/projects/${tr.slug}`);
+		}
+	}
+} catch {
+	// Fall back to the same path in every language.
+}
+
+const { title, place, course, year, professors, team, cover, context, figures } = project.data;
+const seo = getSeoMeta(project, {
+	siteUrl: Astro.url.origin,
+	path: localePath(locale, `/projects/${slug}`),
+	defaultDescription: project.data.summary,
+	defaultOgImage: cover ? absoluteImageUrl(cover, Astro.url.origin) : undefined,
+});
+---
+
+<Base
+	locale={locale}
+	title={title}
+	description={seo.description}
+	image={seo.ogImage}
+	robots={seo.robots}
+	type="article"
+	overlay
+	alternates={alternates}
+	content={{ collection: "projects", id: project.data.id, slug }}
+>
+	<article class="project">
+		<header class:list={["opener", "opener--hero", isLandscape(cover) && "opener--bleed"]}>
+			<div class="opener__image">
+				{cover && <Image image={cover} sizes="100vw" priority />}
+			</div>
+			<div class="opener__head">
+				<h1>{title}</h1>
+				{place && <p>{place}</p>}
+			</div>
+			<div class="opener__foot">
+				<Credits course={course} year={year} professors={professors} team={team} />
+			</div>
+		</header>
+
+		{
+			context && context.length > 0 && (
+				<section class="context">
+					<h2 class="context__label">{t(locale, "context")}</h2>
+					<div class="context__text">
+						<PortableText value={context} />
+					</div>
+				</section>
+			)
+		}
+
+		<Figures items={figures ?? []} locale={locale} />
+
+		{
+			next && next.data.id !== project.data.id && (
+				<nav class="next" aria-label={t(locale, "next")}>
+					<a href={localePath(locale, `/projects/${next.data.slug ?? next.id}`)}>
+						<span class="next__label">{t(locale, "next")}</span>
+						<span class="next__title">{next.data.title}</span>
+					</a>
+					<a class="next__all" href={`${localePath(locale, "/")}#projects`}>
+						{t(locale, "back")}
+					</a>
+				</nav>
+			)
+		}
+	</article>
+</Base>

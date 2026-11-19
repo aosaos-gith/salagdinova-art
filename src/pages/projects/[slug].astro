@@ -1,0 +1,8 @@
+---
+import { decodeSlug } from "emdash";
+import ProjectView from "../../views/ProjectView.astro";
+
+const slug = decodeSlug(Astro.params.slug) ?? "";
+---
+
+<ProjectView locale="en" slug={slug} />

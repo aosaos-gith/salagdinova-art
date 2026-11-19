@@ -1,0 +1,2812 @@
+{
+	"$schema": "https://emdashcms.com/seed.schema.json",
+	"version": "1",
+	"meta": {
+		"name": "salagdinova.art",
+		"description": "Architecture portfolio of Maria Salagdinova",
+		"author": "Maria Salagdinova"
+	},
+	"settings": {
+		"title": "Maria Salagdinova",
+		"tagline": "Architecture student at Politecnico di Milano. Portfolio 2025–2026.",
+		"seo": {
+			"titleSeparator": "—"
+		}
+	},
+	"collections": [
+		{
+			"slug": "projects",
+			"label": "Projects",
+			"labelSingular": "Project",
+			"description": "Projects shown on the home page, in the order of the Order field (1 = first). Images and their captions are shared by all languages; texts are translated per language.",
+			"icon": "briefcase",
+			"sortOrder": 1,
+			"admin": {
+				"listColumns": [
+					"place",
+					"year",
+					"order"
+				]
+			},
+			"supports": [
+				"drafts",
+				"revisions",
+				"preview",
+				"search",
+				"seo"
+			],
+			"urlPattern": "/projects/{slug}",
+			"fields": [
+				{
+					"slug": "title",
+					"label": "Title",
+					"type": "string",
+					"required": true,
+					"searchable": true
+				},
+				{
+					"slug": "place",
+					"label": "Place",
+					"type": "string",
+					"searchable": true
+				},
+				{
+					"slug": "course",
+					"label": "Course or competition",
+					"type": "string"
+				},
+				{
+					"slug": "year",
+					"label": "Year",
+					"type": "string",
+					"translatable": false
+				},
+				{
+					"slug": "professors",
+					"label": "Professors (comma-separated)",
+					"type": "string",
+					"translatable": false
+				},
+				{
+					"slug": "team",
+					"label": "Team (comma-separated)",
+					"type": "string",
+					"translatable": false
+				},
+				{
+					"slug": "order",
+					"label": "Order",
+					"type": "integer",
+					"translatable": false
+				},
+				{
+					"slug": "cover",
+					"label": "Cover image",
+					"type": "image",
+					"required": true,
+					"translatable": false
+				},
+				{
+					"slug": "summary",
+					"label": "Summary (for search engines and link previews)",
+					"type": "text",
+					"validation": {
+						"maxLength": 200
+					}
+				},
+				{
+					"slug": "context",
+					"label": "Context",
+					"type": "portableText",
+					"searchable": true
+				},
+				{
+					"slug": "figures",
+					"label": "Images",
+					"type": "repeater",
+					"translatable": false,
+					"validation": {
+						"maxItems": 40,
+						"subFields": [
+							{
+								"slug": "image",
+								"label": "Image",
+								"type": "image",
+								"required": true
+							},
+							{
+								"slug": "caption",
+								"label": "Caption (English)",
+								"type": "string"
+							},
+							{
+								"slug": "caption_it",
+								"label": "Caption (Italian)",
+								"type": "string"
+							},
+							{
+								"slug": "caption_ru",
+								"label": "Caption (Russian)",
+								"type": "string"
+							},
+							{
+								"slug": "background",
+								"label": "Background",
+								"type": "select",
+								"options": [
+									"White",
+									"Black"
+								]
+							},
+							{
+								"slug": "size",
+								"label": "Size",
+								"type": "select",
+								"options": [
+									"Full width",
+									"Wide",
+									"Half width",
+									"Narrow"
+								]
+							}
+						]
+					}
+				}
+			]
+		},
+		{
+			"slug": "pages",
+			"label": "Pages",
+			"labelSingular": "Page",
+			"description": "Home (slug home, shown at /), About, Contact and any other page at /{slug}.",
+			"sortOrder": 2,
+			"supports": [
+				"drafts",
+				"revisions",
+				"preview",
+				"search",
+				"seo"
+			],
+			"urlPattern": "/{slug}",
+			"fields": [
+				{
+					"slug": "title",
+					"label": "Title",
+					"type": "string",
+					"required": true,
+					"searchable": true
+				},
+				{
+					"slug": "image",
+					"label": "Image",
+					"type": "image",
+					"translatable": false
+				},
+				{
+					"slug": "content",
+					"label": "Content",
+					"type": "portableText",
+					"searchable": true
+				}
+			]
+		}
+	],
+	"content": {
+		"projects": [
+			{
+				"id": "project-brick-en",
+				"slug": "brick",
+				"locale": "en",
+				"status": "published",
+				"data": {
+					"title": "[brick]",
+					"year": "2026",
+					"order": 1,
+					"cover": {
+						"$media": {
+							"url": "https://raw.githubusercontent.com/aosaos-gith/salagdinova-art/main/seed/media/brick-hero.jpg",
+							"alt": "Sectional model of the [brick] museum on a black background",
+							"filename": "brick-hero.jpg"
+						}
+					},
+					"summary": "A museum of brickwork in the Lambrate area of Milan, with a ceramics workshop, an auditorium and a cafe.",
+					"figures": [
+						{
+							"image": {
+								"$media": {
+									"url": "https://raw.githubusercontent.com/aosaos-gith/salagdinova-art/main/seed/media/brick-site-axo.jpg",
+									"alt": "Axonometric drawing of the site",
+									"filename": "brick-site-axo.jpg"
+								}
+							},
+							"background": "White",
+							"size": "Half width",
+							"caption": "Site axonometry",
+							"caption_it": "Assonometria del sito",
+							"caption_ru": "Аксонометрия участка"
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://raw.githubusercontent.com/aosaos-gith/salagdinova-art/main/seed/media/brick-site-sections.jpg",
+									"alt": "Site sections AA’ to DD’",
+									"filename": "brick-site-sections.jpg"
+								}
+							},
+							"background": "White",
+							"size": "Half width",
+							"caption": "Site sections",
+							"caption_it": "Sezioni del sito",
+							"caption_ru": "Разрезы участка"
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://raw.githubusercontent.com/aosaos-gith/salagdinova-art/main/seed/media/brick-plan-ground.jpg",
+									"alt": "Ground floor plan of the museum",
+									"filename": "brick-plan-ground.jpg"
+								}
+							},
+							"background": "White",
+							"size": "Wide",
+							"caption": "Ground floor plan",
+							"caption_it": "Pianta del piano terra",
+							"caption_ru": "План первого этажа"
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://raw.githubusercontent.com/aosaos-gith/salagdinova-art/main/seed/media/brick-plan-first.jpg",
+									"alt": "First floor plan of the museum",
+									"filename": "brick-plan-first.jpg"
+								}
+							},
+							"background": "White",
+							"size": "Wide",
+							"caption": "First floor plan",
+							"caption_it": "Pianta del primo piano",
+							"caption_ru": "План второго этажа"
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://raw.githubusercontent.com/aosaos-gith/salagdinova-art/main/seed/media/brick-section-aa.jpg",
+									"alt": "Section AA’ through the museum",
+									"filename": "brick-section-aa.jpg"
+								}
+							},
+							"background": "White",
+							"size": "Full width",
+							"caption": "Section AA’",
+							"caption_it": "Sezione AA’",
+							"caption_ru": "Разрез AA’"
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://raw.githubusercontent.com/aosaos-gith/salagdinova-art/main/seed/media/brick-section-bb.jpg",
+									"alt": "Section BB’ through the museum",
+									"filename": "brick-section-bb.jpg"
+								}
+							},
+							"background": "White",
+							"size": "Full width",
+							"caption": "Section BB’",
+							"caption_it": "Sezione BB’",
+							"caption_ru": "Разрез BB’"
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://raw.githubusercontent.com/aosaos-gith/salagdinova-art/main/seed/media/brick-site-model.jpg",
+									"alt": "Site model in concrete and plastic on trestles",
+									"filename": "brick-site-model.jpg"
+								}
+							},
+							"background": "Black",
+							"size": "Full width",
+							"caption": "Building site model. Concrete and plastic",
+							"caption_it": "Modello del sito. Calcestruzzo e plastica",
+							"caption_ru": "Макет участка. Бетон и пластик"
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://raw.githubusercontent.com/aosaos-gith/salagdinova-art/main/seed/media/brick-model-1-100.jpg",
+									"alt": "1:100 model of the museum",
+									"filename": "brick-model-1-100.jpg"
+								}
+							},
+							"background": "Black",
+							"size": "Full width",
+							"caption": "1:100 building model. Carta vegetale and stucco",
+							"caption_it": "Modello dell’edificio 1:100. Carta vegetale e stucco",
+							"caption_ru": "Макет здания 1:100. Калька и штукатурка"
+						}
+					],
+					"place": "Milan, Italy",
+					"course": "Final Design Workshop",
+					"professors": "Filipe Manuel Dos Santos Vaz",
+					"team": "Maria Salagdinova, Ruben Moskoviç, Nina Szymanska, Michał Czyzkowski",
+					"context": [
+						{
+							"_type": "block",
+							"_key": "k134",
+							"style": "normal",
+							"children": [
+								{
+									"_type": "span",
+									"_key": "k133",
+									"text": "[brick] is a museum in the Lambrate area of Milan that exhibits the history and art of brickwork. It is designed to reflect on the industrial past of the region as well as the brick architecture and how it changed through the years. The idea for a museum came from an analysis of the otherwise deserted neighbourhood, in need of a social space for the students from a nearby university and local residential units’ dwellers. The visitors of the museum are welcome to visit the exhibition, sign up to a ceramics workshop, attend a public presentation at the auditorium or rest at the cafe.",
+									"marks": []
+								}
+							],
+							"markDefs": []
+						}
+					]
+				}
+			},
+			{
+				"id": "project-brick-it",
+				"slug": "brick",
+				"locale": "it",
+				"status": "published",
+				"data": {
+					"title": "[brick]",
+					"year": "2026",
+					"order": 1,
+					"cover": {
+						"$media": {
+							"url": "https://raw.githubusercontent.com/aosaos-gith/salagdinova-art/main/seed/media/brick-hero.jpg",
+							"alt": "Sectional model of the [brick] museum on a black background",
+							"filename": "brick-hero.jpg"
+						}
+					},
+					"summary": "Un museo della muratura in mattoni nel quartiere di Lambrate, a Milano, con laboratorio di ceramica, auditorium e caffè.",
+					"figures": [
+						{
+							"image": {
+								"$media": {
+									"url": "https://raw.githubusercontent.com/aosaos-gith/salagdinova-art/main/seed/media/brick-site-axo.jpg",
+									"alt": "Axonometric drawing of the site",
+									"filename": "brick-site-axo.jpg"
+								}
+							},
+							"background": "White",
+							"size": "Half width",
+							"caption": "Site axonometry",
+							"caption_it": "Assonometria del sito",
+							"caption_ru": "Аксонометрия участка"
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://raw.githubusercontent.com/aosaos-gith/salagdinova-art/main/seed/media/brick-site-sections.jpg",
+									"alt": "Site sections AA’ to DD’",
+									"filename": "brick-site-sections.jpg"
+								}
+							},
+							"background": "White",
+							"size": "Half width",
+							"caption": "Site sections",
+							"caption_it": "Sezioni del sito",
+							"caption_ru": "Разрезы участка"
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://raw.githubusercontent.com/aosaos-gith/salagdinova-art/main/seed/media/brick-plan-ground.jpg",
+									"alt": "Ground floor plan of the museum",
+									"filename": "brick-plan-ground.jpg"
+								}
+							},
+							"background": "White",
+							"size": "Wide",
+							"caption": "Ground floor plan",
+							"caption_it": "Pianta del piano terra",
+							"caption_ru": "План первого этажа"
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://raw.githubusercontent.com/aosaos-gith/salagdinova-art/main/seed/media/brick-plan-first.jpg",
+									"alt": "First floor plan of the museum",
+									"filename": "brick-plan-first.jpg"
+								}
+							},
+							"background": "White",
+							"size": "Wide",
+							"caption": "First floor plan",
+							"caption_it": "Pianta del primo piano",
+							"caption_ru": "План второго этажа"
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://raw.githubusercontent.com/aosaos-gith/salagdinova-art/main/seed/media/brick-section-aa.jpg",
+									"alt": "Section AA’ through the museum",
+									"filename": "brick-section-aa.jpg"
+								}
+							},
+							"background": "White",
+							"size": "Full width",
+							"caption": "Section AA’",
+							"caption_it": "Sezione AA’",
+							"caption_ru": "Разрез AA’"
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://raw.githubusercontent.com/aosaos-gith/salagdinova-art/main/seed/media/brick-section-bb.jpg",
+									"alt": "Section BB’ through the museum",
+									"filename": "brick-section-bb.jpg"
+								}
+							},
+							"background": "White",
+							"size": "Full width",
+							"caption": "Section BB’",
+							"caption_it": "Sezione BB’",
+							"caption_ru": "Разрез BB’"
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://raw.githubusercontent.com/aosaos-gith/salagdinova-art/main/seed/media/brick-site-model.jpg",
+									"alt": "Site model in concrete and plastic on trestles",
+									"filename": "brick-site-model.jpg"
+								}
+							},
+							"background": "Black",
+							"size": "Full width",
+							"caption": "Building site model. Concrete and plastic",
+							"caption_it": "Modello del sito. Calcestruzzo e plastica",
+							"caption_ru": "Макет участка. Бетон и пластик"
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://raw.githubusercontent.com/aosaos-gith/salagdinova-art/main/seed/media/brick-model-1-100.jpg",
+									"alt": "1:100 model of the museum",
+									"filename": "brick-model-1-100.jpg"
+								}
+							},
+							"background": "Black",
+							"size": "Full width",
+							"caption": "1:100 building model. Carta vegetale and stucco",
+							"caption_it": "Modello dell’edificio 1:100. Carta vegetale e stucco",
+							"caption_ru": "Макет здания 1:100. Калька и штукатурка"
+						}
+					],
+					"place": "Milano, Italia",
+					"course": "Final Design Workshop",
+					"professors": "Filipe Manuel Dos Santos Vaz",
+					"team": "Maria Salagdinova, Ruben Moskoviç, Nina Szymanska, Michał Czyzkowski",
+					"context": [
+						{
+							"_type": "block",
+							"_key": "k136",
+							"style": "normal",
+							"children": [
+								{
+									"_type": "span",
+									"_key": "k135",
+									"text": "[brick] è un museo nel quartiere di Lambrate, a Milano, dedicato alla storia e all’arte della muratura in mattoni. È pensato per riflettere sul passato industriale della zona e sull’architettura in mattoni, e su come sia cambiata nel corso degli anni. L’idea del museo nasce dall’analisi di un quartiere altrimenti deserto, che ha bisogno di uno spazio sociale per gli studenti della vicina università e per chi abita nelle residenze della zona. I visitatori possono vedere la mostra, iscriversi a un laboratorio di ceramica, assistere a una presentazione pubblica nell’auditorium o riposarsi al caffè.",
+									"marks": []
+								}
+							],
+							"markDefs": []
+						}
+					]
+				},
+				"translationOf": "project-brick-en"
+			},
+			{
+				"id": "project-brick-ru",
+				"slug": "brick",
+				"locale": "ru",
+				"status": "published",
+				"data": {
+					"title": "[brick]",
+					"year": "2026",
+					"order": 1,
+					"cover": {
+						"$media": {
+							"url": "https://raw.githubusercontent.com/aosaos-gith/salagdinova-art/main/seed/media/brick-hero.jpg",
+							"alt": "Sectional model of the [brick] museum on a black background",
+							"filename": "brick-hero.jpg"
+						}
+					},
+					"summary": "Музей кирпичной кладки в районе Ламбрате в Милане: керамическая мастерская, аудитория и кафе.",
+					"figures": [
+						{
+							"image": {
+								"$media": {
+									"url": "https://raw.githubusercontent.com/aosaos-gith/salagdinova-art/main/seed/media/brick-site-axo.jpg",
+									"alt": "Axonometric drawing of the site",
+									"filename": "brick-site-axo.jpg"
+								}
+							},
+							"background": "White",
+							"size": "Half width",
+							"caption": "Site axonometry",
+							"caption_it": "Assonometria del sito",
+							"caption_ru": "Аксонометрия участка"
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://raw.githubusercontent.com/aosaos-gith/salagdinova-art/main/seed/media/brick-site-sections.jpg",
+									"alt": "Site sections AA’ to DD’",
+									"filename": "brick-site-sections.jpg"
+								}
+							},
+							"background": "White",
+							"size": "Half width",
+							"caption": "Site sections",
+							"caption_it": "Sezioni del sito",
+							"caption_ru": "Разрезы участка"
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://raw.githubusercontent.com/aosaos-gith/salagdinova-art/main/seed/media/brick-plan-ground.jpg",
+									"alt": "Ground floor plan of the museum",
+									"filename": "brick-plan-ground.jpg"
+								}
+							},
+							"background": "White",
+							"size": "Wide",
+							"caption": "Ground floor plan",
+							"caption_it": "Pianta del piano terra",
+							"caption_ru": "План первого этажа"
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://raw.githubusercontent.com/aosaos-gith/salagdinova-art/main/seed/media/brick-plan-first.jpg",
+									"alt": "First floor plan of the museum",
+									"filename": "brick-plan-first.jpg"
+								}
+							},
+							"background": "White",
+							"size": "Wide",
+							"caption": "First floor plan",
+							"caption_it": "Pianta del primo piano",
+							"caption_ru": "План второго этажа"
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://raw.githubusercontent.com/aosaos-gith/salagdinova-art/main/seed/media/brick-section-aa.jpg",
+									"alt": "Section AA’ through the museum",
+									"filename": "brick-section-aa.jpg"
+								}
+							},
+							"background": "White",
+							"size": "Full width",
+							"caption": "Section AA’",
+							"caption_it": "Sezione AA’",
+							"caption_ru": "Разрез AA’"
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://raw.githubusercontent.com/aosaos-gith/salagdinova-art/main/seed/media/brick-section-bb.jpg",
+									"alt": "Section BB’ through the museum",
+									"filename": "brick-section-bb.jpg"
+								}
+							},
+							"background": "White",
+							"size": "Full width",
+							"caption": "Section BB’",
+							"caption_it": "Sezione BB’",
+							"caption_ru": "Разрез BB’"
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://raw.githubusercontent.com/aosaos-gith/salagdinova-art/main/seed/media/brick-site-model.jpg",
+									"alt": "Site model in concrete and plastic on trestles",
+									"filename": "brick-site-model.jpg"
+								}
+							},
+							"background": "Black",
+							"size": "Full width",
+							"caption": "Building site model. Concrete and plastic",
+							"caption_it": "Modello del sito. Calcestruzzo e plastica",
+							"caption_ru": "Макет участка. Бетон и пластик"
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://raw.githubusercontent.com/aosaos-gith/salagdinova-art/main/seed/media/brick-model-1-100.jpg",
+									"alt": "1:100 model of the museum",
+									"filename": "brick-model-1-100.jpg"
+								}
+							},
+							"background": "Black",
+							"size": "Full width",
+							"caption": "1:100 building model. Carta vegetale and stucco",
+							"caption_it": "Modello dell’edificio 1:100. Carta vegetale e stucco",
+							"caption_ru": "Макет здания 1:100. Калька и штукатурка"
+						}
+					],
+					"place": "Милан, Италия",
+					"course": "Final Design Workshop",
+					"professors": "Filipe Manuel Dos Santos Vaz",
+					"team": "Maria Salagdinova, Ruben Moskoviç, Nina Szymanska, Michał Czyzkowski",
+					"context": [
+						{
+							"_type": "block",
+							"_key": "k138",
+							"style": "normal",
+							"children": [
+								{
+									"_type": "span",
+									"_key": "k137",
+									"text": "[brick] — музей в районе Ламбрате в Милане, посвящённый истории и искусству кирпичной кладки. Он задуман как размышление о промышленном прошлом района, о кирпичной архитектуре и о том, как она менялась с годами. Идея музея родилась из анализа района, который в остальном пустует и которому нужно общественное пространство для студентов соседнего университета и жителей окрестных домов. Посетители могут осмотреть экспозицию, записаться в керамическую мастерскую, прийти на публичную презентацию в аудитории или отдохнуть в кафе.",
+									"marks": []
+								}
+							],
+							"markDefs": []
+						}
+					]
+				},
+				"translationOf": "project-brick-en"
+			},
+			{
+				"id": "project-a-house-for-doing-nothing-en",
+				"slug": "a-house-for-doing-nothing",
+				"locale": "en",
+				"status": "published",
+				"data": {
+					"title": "A House for Doing Nothing",
+					"year": "2025",
+					"order": 2,
+					"cover": {
+						"$media": {
+							"url": "https://raw.githubusercontent.com/aosaos-gith/salagdinova-art/main/seed/media/house-hero.jpg",
+							"alt": "Terrain model with the house set into the clifftop",
+							"filename": "house-hero.jpg"
+						}
+					},
+					"summary": "A quiet clifftop house for a traveller in Porto Santo, hidden behind its walls.",
+					"figures": [
+						{
+							"image": {
+								"$media": {
+									"url": "https://raw.githubusercontent.com/aosaos-gith/salagdinova-art/main/seed/media/house-island-map.jpg",
+									"alt": "Map of Porto Santo",
+									"filename": "house-island-map.jpg"
+								}
+							},
+							"background": "White",
+							"size": "Half width",
+							"caption": "Porto Santo",
+							"caption_it": "Porto Santo",
+							"caption_ru": "Порту-Санту"
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://raw.githubusercontent.com/aosaos-gith/salagdinova-art/main/seed/media/house-collage.jpg",
+									"alt": "Collage of the island coastline",
+									"filename": "house-collage.jpg"
+								}
+							},
+							"background": "White",
+							"size": "Half width"
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://raw.githubusercontent.com/aosaos-gith/salagdinova-art/main/seed/media/house-plan-ground.jpg",
+									"alt": "Ground floor plan on the aerial view of the cliff",
+									"filename": "house-plan-ground.jpg"
+								}
+							},
+							"background": "White",
+							"size": "Wide",
+							"caption": "Ground floor plan",
+							"caption_it": "Pianta del piano terra",
+							"caption_ru": "План первого этажа"
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://raw.githubusercontent.com/aosaos-gith/salagdinova-art/main/seed/media/house-plan-first.jpg",
+									"alt": "First floor plan on the aerial view of the cliff",
+									"filename": "house-plan-first.jpg"
+								}
+							},
+							"background": "White",
+							"size": "Wide",
+							"caption": "First floor plan",
+							"caption_it": "Pianta del primo piano",
+							"caption_ru": "План второго этажа"
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://raw.githubusercontent.com/aosaos-gith/salagdinova-art/main/seed/media/house-section.jpg",
+									"alt": "Section through the house and the cliff",
+									"filename": "house-section.jpg"
+								}
+							},
+							"background": "White",
+							"size": "Full width",
+							"caption": "Section",
+							"caption_it": "Sezione",
+							"caption_ru": "Разрез"
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://raw.githubusercontent.com/aosaos-gith/salagdinova-art/main/seed/media/house-elevation.jpg",
+									"alt": "Elevation of the cliff with the house on top",
+									"filename": "house-elevation.jpg"
+								}
+							},
+							"background": "White",
+							"size": "Half width",
+							"caption": "Elevation",
+							"caption_it": "Prospetto",
+							"caption_ru": "Фасад"
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://raw.githubusercontent.com/aosaos-gith/salagdinova-art/main/seed/media/house-interior.jpg",
+									"alt": "Interior visualisation with a curved concrete wall",
+									"filename": "house-interior.jpg"
+								}
+							},
+							"background": "White",
+							"size": "Half width",
+							"caption": "Interior visualisation",
+							"caption_it": "Vista interna",
+							"caption_ru": "Интерьер"
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://raw.githubusercontent.com/aosaos-gith/salagdinova-art/main/seed/media/house-exterior.jpg",
+									"alt": "Exterior visualisation of the house on its platform",
+									"filename": "house-exterior.jpg"
+								}
+							},
+							"background": "White",
+							"size": "Wide",
+							"caption": "Exterior visualisation",
+							"caption_it": "Vista esterna",
+							"caption_ru": "Экстерьер"
+						}
+					],
+					"place": "Porto Santo, Portugal",
+					"course": "Architectural Design Studio 3",
+					"professors": "Paulo David",
+					"team": "Maria Salagdinova, Alua Akhmerova, Zou Yanyu",
+					"context": [
+						{
+							"_type": "block",
+							"_key": "k140",
+							"style": "normal",
+							"children": [
+								{
+									"_type": "span",
+									"_key": "k139",
+									"text": "A House for Doing Nothing sits at the top of the cliff in Porto Santo. Its sole purpose is to provide a quiet home for a traveller. Making use of its surroundings, the house’s windows look out on the small cave from the dining room, on the still ocean from the living room, and on a nearby islet from the bedroom. The house itself is hidden by a wall that leads the visitors to the entrance, and by the walls of the platform it is standing on, to keep it a secret only known to its inhabitants.",
+									"marks": []
+								}
+							],
+							"markDefs": []
+						}
+					]
+				}
+			},
+			{
+				"id": "project-a-house-for-doing-nothing-it",
+				"slug": "a-house-for-doing-nothing",
+				"locale": "it",
+				"status": "published",
+				"data": {
+					"title": "A House for Doing Nothing",
+					"year": "2025",
+					"order": 2,
+					"cover": {
+						"$media": {
+							"url": "https://raw.githubusercontent.com/aosaos-gith/salagdinova-art/main/seed/media/house-hero.jpg",
+							"alt": "Terrain model with the house set into the clifftop",
+							"filename": "house-hero.jpg"
+						}
+					},
+					"summary": "Una casa silenziosa in cima alla scogliera di Porto Santo, per un viaggiatore, nascosta dai suoi muri.",
+					"figures": [
+						{
+							"image": {
+								"$media": {
+									"url": "https://raw.githubusercontent.com/aosaos-gith/salagdinova-art/main/seed/media/house-island-map.jpg",
+									"alt": "Map of Porto Santo",
+									"filename": "house-island-map.jpg"
+								}
+							},
+							"background": "White",
+							"size": "Half width",
+							"caption": "Porto Santo",
+							"caption_it": "Porto Santo",
+							"caption_ru": "Порту-Санту"
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://raw.githubusercontent.com/aosaos-gith/salagdinova-art/main/seed/media/house-collage.jpg",
+									"alt": "Collage of the island coastline",
+									"filename": "house-collage.jpg"
+								}
+							},
+							"background": "White",
+							"size": "Half width"
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://raw.githubusercontent.com/aosaos-gith/salagdinova-art/main/seed/media/house-plan-ground.jpg",
+									"alt": "Ground floor plan on the aerial view of the cliff",
+									"filename": "house-plan-ground.jpg"
+								}
+							},
+							"background": "White",
+							"size": "Wide",
+							"caption": "Ground floor plan",
+							"caption_it": "Pianta del piano terra",
+							"caption_ru": "План первого этажа"
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://raw.githubusercontent.com/aosaos-gith/salagdinova-art/main/seed/media/house-plan-first.jpg",
+									"alt": "First floor plan on the aerial view of the cliff",
+									"filename": "house-plan-first.jpg"
+								}
+							},
+							"background": "White",
+							"size": "Wide",
+							"caption": "First floor plan",
+							"caption_it": "Pianta del primo piano",
+							"caption_ru": "План второго этажа"
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://raw.githubusercontent.com/aosaos-gith/salagdinova-art/main/seed/media/house-section.jpg",
+									"alt": "Section through the house and the cliff",
+									"filename": "house-section.jpg"
+								}
+							},
+							"background": "White",
+							"size": "Full width",
+							"caption": "Section",
+							"caption_it": "Sezione",
+							"caption_ru": "Разрез"
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://raw.githubusercontent.com/aosaos-gith/salagdinova-art/main/seed/media/house-elevation.jpg",
+									"alt": "Elevation of the cliff with the house on top",
+									"filename": "house-elevation.jpg"
+								}
+							},
+							"background": "White",
+							"size": "Half width",
+							"caption": "Elevation",
+							"caption_it": "Prospetto",
+							"caption_ru": "Фасад"
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://raw.githubusercontent.com/aosaos-gith/salagdinova-art/main/seed/media/house-interior.jpg",
+									"alt": "Interior visualisation with a curved concrete wall",
+									"filename": "house-interior.jpg"
+								}
+							},
+							"background": "White",
+							"size": "Half width",
+							"caption": "Interior visualisation",
+							"caption_it": "Vista interna",
+							"caption_ru": "Интерьер"
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://raw.githubusercontent.com/aosaos-gith/salagdinova-art/main/seed/media/house-exterior.jpg",
+									"alt": "Exterior visualisation of the house on its platform",
+									"filename": "house-exterior.jpg"
+								}
+							},
+							"background": "White",
+							"size": "Wide",
+							"caption": "Exterior visualisation",
+							"caption_it": "Vista esterna",
+							"caption_ru": "Экстерьер"
+						}
+					],
+					"place": "Porto Santo, Portogallo",
+					"course": "Architectural Design Studio 3",
+					"professors": "Paulo David",
+					"team": "Maria Salagdinova, Alua Akhmerova, Zou Yanyu",
+					"context": [
+						{
+							"_type": "block",
+							"_key": "k142",
+							"style": "normal",
+							"children": [
+								{
+									"_type": "span",
+									"_key": "k141",
+									"text": "A House for Doing Nothing si trova in cima alla scogliera di Porto Santo. Il suo unico scopo è offrire una casa tranquilla a un viaggiatore. Sfruttando ciò che la circonda, le finestre della casa guardano sulla piccola grotta dalla sala da pranzo, sull’oceano immobile dal soggiorno e su un isolotto vicino dalla camera da letto. La casa è nascosta da un muro che accompagna i visitatori all’ingresso e dai muri della piattaforma su cui poggia, così da restare un segreto noto solo a chi la abita.",
+									"marks": []
+								}
+							],
+							"markDefs": []
+						}
+					]
+				},
+				"translationOf": "project-a-house-for-doing-nothing-en"
+			},
+			{
+				"id": "project-a-house-for-doing-nothing-ru",
+				"slug": "a-house-for-doing-nothing",
+				"locale": "ru",
+				"status": "published",
+				"data": {
+					"title": "A House for Doing Nothing",
+					"year": "2025",
+					"order": 2,
+					"cover": {
+						"$media": {
+							"url": "https://raw.githubusercontent.com/aosaos-gith/salagdinova-art/main/seed/media/house-hero.jpg",
+							"alt": "Terrain model with the house set into the clifftop",
+							"filename": "house-hero.jpg"
+						}
+					},
+					"summary": "Тихий дом для путешественника на вершине утёса Порту-Санту, скрытый за стенами.",
+					"figures": [
+						{
+							"image": {
+								"$media": {
+									"url": "https://raw.githubusercontent.com/aosaos-gith/salagdinova-art/main/seed/media/house-island-map.jpg",
+									"alt": "Map of Porto Santo",
+									"filename": "house-island-map.jpg"
+								}
+							},
+							"background": "White",
+							"size": "Half width",
+							"caption": "Porto Santo",
+							"caption_it": "Porto Santo",
+							"caption_ru": "Порту-Санту"
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://raw.githubusercontent.com/aosaos-gith/salagdinova-art/main/seed/media/house-collage.jpg",
+									"alt": "Collage of the island coastline",
+									"filename": "house-collage.jpg"
+								}
+							},
+							"background": "White",
+							"size": "Half width"
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://raw.githubusercontent.com/aosaos-gith/salagdinova-art/main/seed/media/house-plan-ground.jpg",
+									"alt": "Ground floor plan on the aerial view of the cliff",
+									"filename": "house-plan-ground.jpg"
+								}
+							},
+							"background": "White",
+							"size": "Wide",
+							"caption": "Ground floor plan",
+							"caption_it": "Pianta del piano terra",
+							"caption_ru": "План первого этажа"
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://raw.githubusercontent.com/aosaos-gith/salagdinova-art/main/seed/media/house-plan-first.jpg",
+									"alt": "First floor plan on the aerial view of the cliff",
+									"filename": "house-plan-first.jpg"
+								}
+							},
+							"background": "White",
+							"size": "Wide",
+							"caption": "First floor plan",
+							"caption_it": "Pianta del primo piano",
+							"caption_ru": "План второго этажа"
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://raw.githubusercontent.com/aosaos-gith/salagdinova-art/main/seed/media/house-section.jpg",
+									"alt": "Section through the house and the cliff",
+									"filename": "house-section.jpg"
+								}
+							},
+							"background": "White",
+							"size": "Full width",
+							"caption": "Section",
+							"caption_it": "Sezione",
+							"caption_ru": "Разрез"
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://raw.githubusercontent.com/aosaos-gith/salagdinova-art/main/seed/media/house-elevation.jpg",
+									"alt": "Elevation of the cliff with the house on top",
+									"filename": "house-elevation.jpg"
+								}
+							},
+							"background": "White",
+							"size": "Half width",
+							"caption": "Elevation",
+							"caption_it": "Prospetto",
+							"caption_ru": "Фасад"
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://raw.githubusercontent.com/aosaos-gith/salagdinova-art/main/seed/media/house-interior.jpg",
+									"alt": "Interior visualisation with a curved concrete wall",
+									"filename": "house-interior.jpg"
+								}
+							},
+							"background": "White",
+							"size": "Half width",
+							"caption": "Interior visualisation",
+							"caption_it": "Vista interna",
+							"caption_ru": "Интерьер"
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://raw.githubusercontent.com/aosaos-gith/salagdinova-art/main/seed/media/house-exterior.jpg",
+									"alt": "Exterior visualisation of the house on its platform",
+									"filename": "house-exterior.jpg"
+								}
+							},
+							"background": "White",
+							"size": "Wide",
+							"caption": "Exterior visualisation",
+							"caption_it": "Vista esterna",
+							"caption_ru": "Экстерьер"
+						}
+					],
+					"place": "Порту-Санту, Португалия",
+					"course": "Architectural Design Studio 3",
+					"professors": "Paulo David",
+					"team": "Maria Salagdinova, Alua Akhmerova, Zou Yanyu",
+					"context": [
+						{
+							"_type": "block",
+							"_key": "k144",
+							"style": "normal",
+							"children": [
+								{
+									"_type": "span",
+									"_key": "k143",
+									"text": "A House for Doing Nothing стоит на вершине утёса на острове Порту-Санту. Его единственное назначение — дать путешественнику тихий дом. Дом использует своё окружение: окна столовой смотрят на небольшую пещеру, окна гостиной — на неподвижный океан, окна спальни — на соседний островок. Сам дом скрыт стеной, которая ведёт посетителя ко входу, и стенами платформы, на которой он стоит, — так он остаётся тайной, известной только его обитателям.",
+									"marks": []
+								}
+							],
+							"markDefs": []
+						}
+					]
+				},
+				"translationOf": "project-a-house-for-doing-nothing-en"
+			},
+			{
+				"id": "project-galanthus-en",
+				"slug": "galanthus",
+				"locale": "en",
+				"status": "published",
+				"data": {
+					"title": "Galanthus",
+					"year": "2025",
+					"order": 3,
+					"cover": {
+						"$media": {
+							"url": "https://raw.githubusercontent.com/aosaos-gith/salagdinova-art/main/seed/media/galanthus-hero.jpg",
+							"alt": "Model of a single Galanthus module with its roof lifted",
+							"filename": "galanthus-hero.jpg"
+						}
+					},
+					"summary": "A modular Antarctic research base of triangular “petals”, each housing four people.",
+					"figures": [
+						{
+							"image": {
+								"$media": {
+									"url": "https://raw.githubusercontent.com/aosaos-gith/salagdinova-art/main/seed/media/galanthus-map.jpg",
+									"alt": "Map of Antarctica with the station location",
+									"filename": "galanthus-map.jpg"
+								}
+							},
+							"background": "White",
+							"size": "Narrow",
+							"caption": "Location",
+							"caption_it": "Localizzazione",
+							"caption_ru": "Расположение"
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://raw.githubusercontent.com/aosaos-gith/salagdinova-art/main/seed/media/galanthus-plan.jpg",
+									"alt": "Floor plan of a single petal",
+									"filename": "galanthus-plan.jpg"
+								}
+							},
+							"background": "White",
+							"size": "Wide",
+							"caption": "Floor plan",
+							"caption_it": "Pianta",
+							"caption_ru": "План"
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://raw.githubusercontent.com/aosaos-gith/salagdinova-art/main/seed/media/galanthus-section.jpg",
+									"alt": "Longitudinal section of a module on its legs",
+									"filename": "galanthus-section.jpg"
+								}
+							},
+							"background": "White",
+							"size": "Wide",
+							"caption": "Longitudinal section",
+							"caption_it": "Sezione longitudinale",
+							"caption_ru": "Продольный разрез"
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://raw.githubusercontent.com/aosaos-gith/salagdinova-art/main/seed/media/galanthus-elevation-side.jpg",
+									"alt": "Side elevation with green cladding",
+									"filename": "galanthus-elevation-side.jpg"
+								}
+							},
+							"background": "White",
+							"size": "Half width",
+							"caption": "Side elevation",
+							"caption_it": "Prospetto laterale",
+							"caption_ru": "Боковой фасад"
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://raw.githubusercontent.com/aosaos-gith/salagdinova-art/main/seed/media/galanthus-elevation-front.jpg",
+									"alt": "Front elevation with the entrance door",
+									"filename": "galanthus-elevation-front.jpg"
+								}
+							},
+							"background": "White",
+							"size": "Half width",
+							"caption": "Front elevation",
+							"caption_it": "Prospetto frontale",
+							"caption_ru": "Главный фасад"
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://raw.githubusercontent.com/aosaos-gith/salagdinova-art/main/seed/media/galanthus-model-petal.jpg",
+									"alt": "Model of a single petal seen from above",
+									"filename": "galanthus-model-petal.jpg"
+								}
+							},
+							"background": "Black",
+							"size": "Half width",
+							"caption": "Inside the model of a single “petal”",
+							"caption_it": "Interno del modello di un singolo “petalo”",
+							"caption_ru": "Макет одного «лепестка» изнутри"
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://raw.githubusercontent.com/aosaos-gith/salagdinova-art/main/seed/media/galanthus-model-station.jpg",
+									"alt": "Model of the complete station",
+									"filename": "galanthus-model-station.jpg"
+								}
+							},
+							"background": "Black",
+							"size": "Half width",
+							"caption": "Model of the complete station",
+							"caption_it": "Modello della stazione completa",
+							"caption_ru": "Макет всей станции"
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://raw.githubusercontent.com/aosaos-gith/salagdinova-art/main/seed/media/galanthus-door-detail.jpg",
+									"alt": "Door section detail with the wall and floor build-up",
+									"filename": "galanthus-door-detail.jpg"
+								}
+							},
+							"background": "White",
+							"size": "Half width",
+							"caption": "Door section detail",
+							"caption_it": "Dettaglio della porta in sezione",
+							"caption_ru": "Узел двери в разрезе"
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://raw.githubusercontent.com/aosaos-gith/salagdinova-art/main/seed/media/galanthus-structure.jpg",
+									"alt": "Exploded structure diagram with photos of joint models",
+									"filename": "galanthus-structure.jpg"
+								}
+							},
+							"background": "White",
+							"size": "Half width",
+							"caption": "Exploded structure diagram",
+							"caption_it": "Esploso della struttura",
+							"caption_ru": "Схема конструкции"
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://raw.githubusercontent.com/aosaos-gith/salagdinova-art/main/seed/media/galanthus-aurora.jpg",
+									"alt": "Night render of the station under the aurora",
+									"filename": "galanthus-aurora.jpg"
+								}
+							},
+							"background": "Black",
+							"size": "Full width",
+							"caption": "Night view",
+							"caption_it": "Vista notturna",
+							"caption_ru": "Ночной вид"
+						}
+					],
+					"place": "Marina Point, Antarctica",
+					"course": "Building Technology Studio",
+					"professors": "Ingrid Paoletti, Andrea Rebecchi",
+					"team": "Maria Salagdinova, Ruben Moskoviç, Rustam Rahmatulin",
+					"context": [
+						{
+							"_type": "block",
+							"_key": "k146",
+							"style": "normal",
+							"children": [
+								{
+									"_type": "span",
+									"_key": "k145",
+									"text": "Galanthus, named after the winter flower, is a modular Antarctic research base. Its modules, each less than 50 square meters, can stand on their own, housing 4 people in one “petal,” or combine together to create a larger base with communal areas. A single unit is equipped with a bedroom, bathroom, laboratory and office, as well as a living and dining space, all designed with the needs of research station workers in mind. Thanks to its modularity, each unit in the station can have its own function, without the need to change its interior structure. Therefore, the complete Galanthus station can sustain the needs of its inhabitants all on its own by dedicating differing uses to each “petal”, such as a laboratory and equipment storage, a common recreational area, or housing for the scientists.",
+									"marks": []
+								}
+							],
+							"markDefs": []
+						}
+					]
+				}
+			},
+			{
+				"id": "project-galanthus-it",
+				"slug": "galanthus",
+				"locale": "it",
+				"status": "published",
+				"data": {
+					"title": "Galanthus",
+					"year": "2025",
+					"order": 3,
+					"cover": {
+						"$media": {
+							"url": "https://raw.githubusercontent.com/aosaos-gith/salagdinova-art/main/seed/media/galanthus-hero.jpg",
+							"alt": "Model of a single Galanthus module with its roof lifted",
+							"filename": "galanthus-hero.jpg"
+						}
+					},
+					"summary": "Una base di ricerca modulare in Antartide fatta di “petali” triangolari, ciascuno per quattro persone.",
+					"figures": [
+						{
+							"image": {
+								"$media": {
+									"url": "https://raw.githubusercontent.com/aosaos-gith/salagdinova-art/main/seed/media/galanthus-map.jpg",
+									"alt": "Map of Antarctica with the station location",
+									"filename": "galanthus-map.jpg"
+								}
+							},
+							"background": "White",
+							"size": "Narrow",
+							"caption": "Location",
+							"caption_it": "Localizzazione",
+							"caption_ru": "Расположение"
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://raw.githubusercontent.com/aosaos-gith/salagdinova-art/main/seed/media/galanthus-plan.jpg",
+									"alt": "Floor plan of a single petal",
+									"filename": "galanthus-plan.jpg"
+								}
+							},
+							"background": "White",
+							"size": "Wide",
+							"caption": "Floor plan",
+							"caption_it": "Pianta",
+							"caption_ru": "План"
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://raw.githubusercontent.com/aosaos-gith/salagdinova-art/main/seed/media/galanthus-section.jpg",
+									"alt": "Longitudinal section of a module on its legs",
+									"filename": "galanthus-section.jpg"
+								}
+							},
+							"background": "White",
+							"size": "Wide",
+							"caption": "Longitudinal section",
+							"caption_it": "Sezione longitudinale",
+							"caption_ru": "Продольный разрез"
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://raw.githubusercontent.com/aosaos-gith/salagdinova-art/main/seed/media/galanthus-elevation-side.jpg",
+									"alt": "Side elevation with green cladding",
+									"filename": "galanthus-elevation-side.jpg"
+								}
+							},
+							"background": "White",
+							"size": "Half width",
+							"caption": "Side elevation",
+							"caption_it": "Prospetto laterale",
+							"caption_ru": "Боковой фасад"
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://raw.githubusercontent.com/aosaos-gith/salagdinova-art/main/seed/media/galanthus-elevation-front.jpg",
+									"alt": "Front elevation with the entrance door",
+									"filename": "galanthus-elevation-front.jpg"
+								}
+							},
+							"background": "White",
+							"size": "Half width",
+							"caption": "Front elevation",
+							"caption_it": "Prospetto frontale",
+							"caption_ru": "Главный фасад"
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://raw.githubusercontent.com/aosaos-gith/salagdinova-art/main/seed/media/galanthus-model-petal.jpg",
+									"alt": "Model of a single petal seen from above",
+									"filename": "galanthus-model-petal.jpg"
+								}
+							},
+							"background": "Black",
+							"size": "Half width",
+							"caption": "Inside the model of a single “petal”",
+							"caption_it": "Interno del modello di un singolo “petalo”",
+							"caption_ru": "Макет одного «лепестка» изнутри"
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://raw.githubusercontent.com/aosaos-gith/salagdinova-art/main/seed/media/galanthus-model-station.jpg",
+									"alt": "Model of the complete station",
+									"filename": "galanthus-model-station.jpg"
+								}
+							},
+							"background": "Black",
+							"size": "Half width",
+							"caption": "Model of the complete station",
+							"caption_it": "Modello della stazione completa",
+							"caption_ru": "Макет всей станции"
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://raw.githubusercontent.com/aosaos-gith/salagdinova-art/main/seed/media/galanthus-door-detail.jpg",
+									"alt": "Door section detail with the wall and floor build-up",
+									"filename": "galanthus-door-detail.jpg"
+								}
+							},
+							"background": "White",
+							"size": "Half width",
+							"caption": "Door section detail",
+							"caption_it": "Dettaglio della porta in sezione",
+							"caption_ru": "Узел двери в разрезе"
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://raw.githubusercontent.com/aosaos-gith/salagdinova-art/main/seed/media/galanthus-structure.jpg",
+									"alt": "Exploded structure diagram with photos of joint models",
+									"filename": "galanthus-structure.jpg"
+								}
+							},
+							"background": "White",
+							"size": "Half width",
+							"caption": "Exploded structure diagram",
+							"caption_it": "Esploso della struttura",
+							"caption_ru": "Схема конструкции"
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://raw.githubusercontent.com/aosaos-gith/salagdinova-art/main/seed/media/galanthus-aurora.jpg",
+									"alt": "Night render of the station under the aurora",
+									"filename": "galanthus-aurora.jpg"
+								}
+							},
+							"background": "Black",
+							"size": "Full width",
+							"caption": "Night view",
+							"caption_it": "Vista notturna",
+							"caption_ru": "Ночной вид"
+						}
+					],
+					"place": "Marina Point, Antartide",
+					"course": "Building Technology Studio",
+					"professors": "Ingrid Paoletti, Andrea Rebecchi",
+					"team": "Maria Salagdinova, Ruben Moskoviç, Rustam Rahmatulin",
+					"context": [
+						{
+							"_type": "block",
+							"_key": "k148",
+							"style": "normal",
+							"children": [
+								{
+									"_type": "span",
+									"_key": "k147",
+									"text": "Galanthus, che prende il nome dal fiore invernale, è una base di ricerca modulare in Antartide. I suoi moduli, ciascuno di meno di 50 metri quadrati, possono stare da soli, ospitando 4 persone in un “petalo”, oppure unirsi per formare una base più grande con spazi comuni. Ogni unità ha camera da letto, bagno, laboratorio e ufficio, oltre a uno spazio per soggiorno e pranzo, tutti pensati per le esigenze di chi lavora in una stazione di ricerca. Grazie alla modularità, ogni unità della stazione può avere una propria funzione senza cambiare la struttura interna. Così la stazione Galanthus completa può soddisfare da sola le esigenze dei suoi abitanti, assegnando a ogni “petalo” un uso diverso: laboratorio e deposito delle attrezzature, area ricreativa comune o alloggi per gli scienziati.",
+									"marks": []
+								}
+							],
+							"markDefs": []
+						}
+					]
+				},
+				"translationOf": "project-galanthus-en"
+			},
+			{
+				"id": "project-galanthus-ru",
+				"slug": "galanthus",
+				"locale": "ru",
+				"status": "published",
+				"data": {
+					"title": "Galanthus",
+					"year": "2025",
+					"order": 3,
+					"cover": {
+						"$media": {
+							"url": "https://raw.githubusercontent.com/aosaos-gith/salagdinova-art/main/seed/media/galanthus-hero.jpg",
+							"alt": "Model of a single Galanthus module with its roof lifted",
+							"filename": "galanthus-hero.jpg"
+						}
+					},
+					"summary": "Модульная исследовательская база в Антарктиде из треугольных «лепестков», каждый на четырёх человек.",
+					"figures": [
+						{
+							"image": {
+								"$media": {
+									"url": "https://raw.githubusercontent.com/aosaos-gith/salagdinova-art/main/seed/media/galanthus-map.jpg",
+									"alt": "Map of Antarctica with the station location",
+									"filename": "galanthus-map.jpg"
+								}
+							},
+							"background": "White",
+							"size": "Narrow",
+							"caption": "Location",
+							"caption_it": "Localizzazione",
+							"caption_ru": "Расположение"
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://raw.githubusercontent.com/aosaos-gith/salagdinova-art/main/seed/media/galanthus-plan.jpg",
+									"alt": "Floor plan of a single petal",
+									"filename": "galanthus-plan.jpg"
+								}
+							},
+							"background": "White",
+							"size": "Wide",
+							"caption": "Floor plan",
+							"caption_it": "Pianta",
+							"caption_ru": "План"
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://raw.githubusercontent.com/aosaos-gith/salagdinova-art/main/seed/media/galanthus-section.jpg",
+									"alt": "Longitudinal section of a module on its legs",
+									"filename": "galanthus-section.jpg"
+								}
+							},
+							"background": "White",
+							"size": "Wide",
+							"caption": "Longitudinal section",
+							"caption_it": "Sezione longitudinale",
+							"caption_ru": "Продольный разрез"
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://raw.githubusercontent.com/aosaos-gith/salagdinova-art/main/seed/media/galanthus-elevation-side.jpg",
+									"alt": "Side elevation with green cladding",
+									"filename": "galanthus-elevation-side.jpg"
+								}
+							},
+							"background": "White",
+							"size": "Half width",
+							"caption": "Side elevation",
+							"caption_it": "Prospetto laterale",
+							"caption_ru": "Боковой фасад"
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://raw.githubusercontent.com/aosaos-gith/salagdinova-art/main/seed/media/galanthus-elevation-front.jpg",
+									"alt": "Front elevation with the entrance door",
+									"filename": "galanthus-elevation-front.jpg"
+								}
+							},
+							"background": "White",
+							"size": "Half width",
+							"caption": "Front elevation",
+							"caption_it": "Prospetto frontale",
+							"caption_ru": "Главный фасад"
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://raw.githubusercontent.com/aosaos-gith/salagdinova-art/main/seed/media/galanthus-model-petal.jpg",
+									"alt": "Model of a single petal seen from above",
+									"filename": "galanthus-model-petal.jpg"
+								}
+							},
+							"background": "Black",
+							"size": "Half width",
+							"caption": "Inside the model of a single “petal”",
+							"caption_it": "Interno del modello di un singolo “petalo”",
+							"caption_ru": "Макет одного «лепестка» изнутри"
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://raw.githubusercontent.com/aosaos-gith/salagdinova-art/main/seed/media/galanthus-model-station.jpg",
+									"alt": "Model of the complete station",
+									"filename": "galanthus-model-station.jpg"
+								}
+							},
+							"background": "Black",
+							"size": "Half width",
+							"caption": "Model of the complete station",
+							"caption_it": "Modello della stazione completa",
+							"caption_ru": "Макет всей станции"
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://raw.githubusercontent.com/aosaos-gith/salagdinova-art/main/seed/media/galanthus-door-detail.jpg",
+									"alt": "Door section detail with the wall and floor build-up",
+									"filename": "galanthus-door-detail.jpg"
+								}
+							},
+							"background": "White",
+							"size": "Half width",
+							"caption": "Door section detail",
+							"caption_it": "Dettaglio della porta in sezione",
+							"caption_ru": "Узел двери в разрезе"
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://raw.githubusercontent.com/aosaos-gith/salagdinova-art/main/seed/media/galanthus-structure.jpg",
+									"alt": "Exploded structure diagram with photos of joint models",
+									"filename": "galanthus-structure.jpg"
+								}
+							},
+							"background": "White",
+							"size": "Half width",
+							"caption": "Exploded structure diagram",
+							"caption_it": "Esploso della struttura",
+							"caption_ru": "Схема конструкции"
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://raw.githubusercontent.com/aosaos-gith/salagdinova-art/main/seed/media/galanthus-aurora.jpg",
+									"alt": "Night render of the station under the aurora",
+									"filename": "galanthus-aurora.jpg"
+								}
+							},
+							"background": "Black",
+							"size": "Full width",
+							"caption": "Night view",
+							"caption_it": "Vista notturna",
+							"caption_ru": "Ночной вид"
+						}
+					],
+					"place": "Марина-Пойнт, Антарктида",
+					"course": "Building Technology Studio",
+					"professors": "Ingrid Paoletti, Andrea Rebecchi",
+					"team": "Maria Salagdinova, Ruben Moskoviç, Rustam Rahmatulin",
+					"context": [
+						{
+							"_type": "block",
+							"_key": "k150",
+							"style": "normal",
+							"children": [
+								{
+									"_type": "span",
+									"_key": "k149",
+									"text": "Galanthus, названный в честь зимнего цветка подснежника, — модульная исследовательская база в Антарктиде. Её модули площадью меньше 50 квадратных метров каждый могут стоять отдельно, вмещая 4 человек в одном «лепестке», или объединяться в большую базу с общими зонами. В каждом модуле есть спальня, ванная, лаборатория и кабинет, а также гостиная со столовой — всё спроектировано с учётом нужд сотрудников исследовательской станции. Благодаря модульности у каждого блока может быть своя функция без изменения внутренней конструкции. Поэтому полная станция Galanthus может сама обеспечивать нужды своих обитателей, отводя каждому «лепестку» своё назначение: лабораторию и склад оборудования, общую зону отдыха или жильё для учёных.",
+									"marks": []
+								}
+							],
+							"markDefs": []
+						}
+					]
+				},
+				"translationOf": "project-galanthus-en"
+			},
+			{
+				"id": "project-architects-stair-en",
+				"slug": "architects-stair",
+				"locale": "en",
+				"status": "published",
+				"data": {
+					"title": "Architect’s Stair",
+					"year": "2026",
+					"order": 4,
+					"cover": {
+						"$media": {
+							"url": "https://raw.githubusercontent.com/aosaos-gith/salagdinova-art/main/seed/media/stair.jpg",
+							"alt": "Greyscale render of a folded concrete stair on black",
+							"filename": "stair.jpg"
+						}
+					},
+					"summary": "Shortlisted entry for Buildner’s Architect’s Stair competition.",
+					"figures": [],
+					"course": "Buildner competition, shortlisted"
+				}
+			},
+			{
+				"id": "project-architects-stair-it",
+				"slug": "architects-stair",
+				"locale": "it",
+				"status": "published",
+				"data": {
+					"title": "Architect’s Stair",
+					"year": "2026",
+					"order": 4,
+					"cover": {
+						"$media": {
+							"url": "https://raw.githubusercontent.com/aosaos-gith/salagdinova-art/main/seed/media/stair.jpg",
+							"alt": "Greyscale render of a folded concrete stair on black",
+							"filename": "stair.jpg"
+						}
+					},
+					"summary": "Progetto in shortlist al concorso Architect’s Stair di Buildner.",
+					"figures": [],
+					"course": "Concorso Buildner, in shortlist"
+				},
+				"translationOf": "project-architects-stair-en"
+			},
+			{
+				"id": "project-architects-stair-ru",
+				"slug": "architects-stair",
+				"locale": "ru",
+				"status": "published",
+				"data": {
+					"title": "Architect’s Stair",
+					"year": "2026",
+					"order": 4,
+					"cover": {
+						"$media": {
+							"url": "https://raw.githubusercontent.com/aosaos-gith/salagdinova-art/main/seed/media/stair.jpg",
+							"alt": "Greyscale render of a folded concrete stair on black",
+							"filename": "stair.jpg"
+						}
+					},
+					"summary": "Проект из шорт-листа конкурса Architect’s Stair от Buildner.",
+					"figures": [],
+					"course": "Конкурс Buildner, шорт-лист"
+				},
+				"translationOf": "project-architects-stair-en"
+			}
+		],
+		"pages": [
+			{
+				"id": "page-home-en",
+				"slug": "home",
+				"locale": "en",
+				"status": "published",
+				"data": {
+					"title": "Home",
+					"content": [
+						{
+							"_type": "block",
+							"_key": "k128",
+							"style": "normal",
+							"children": [
+								{
+									"_type": "span",
+									"_key": "k127",
+									"text": "Portfolio 2025–2026",
+									"marks": []
+								}
+							],
+							"markDefs": []
+						}
+					],
+					"image": {
+						"$media": {
+							"url": "https://raw.githubusercontent.com/aosaos-gith/salagdinova-art/main/seed/media/cover.jpg",
+							"alt": "Stepped grey concrete collage",
+							"filename": "cover.jpg"
+						}
+					}
+				}
+			},
+			{
+				"id": "page-home-it",
+				"slug": "home",
+				"locale": "it",
+				"status": "published",
+				"data": {
+					"title": "Home",
+					"content": [
+						{
+							"_type": "block",
+							"_key": "k130",
+							"style": "normal",
+							"children": [
+								{
+									"_type": "span",
+									"_key": "k129",
+									"text": "Portfolio 2025–2026",
+									"marks": []
+								}
+							],
+							"markDefs": []
+						}
+					],
+					"image": {
+						"$media": {
+							"url": "https://raw.githubusercontent.com/aosaos-gith/salagdinova-art/main/seed/media/cover.jpg",
+							"alt": "Stepped grey concrete collage",
+							"filename": "cover.jpg"
+						}
+					}
+				},
+				"translationOf": "page-home-en"
+			},
+			{
+				"id": "page-home-ru",
+				"slug": "home",
+				"locale": "ru",
+				"status": "published",
+				"data": {
+					"title": "Главная",
+					"content": [
+						{
+							"_type": "block",
+							"_key": "k132",
+							"style": "normal",
+							"children": [
+								{
+									"_type": "span",
+									"_key": "k131",
+									"text": "Портфолио 2025–2026",
+									"marks": []
+								}
+							],
+							"markDefs": []
+						}
+					],
+					"image": {
+						"$media": {
+							"url": "https://raw.githubusercontent.com/aosaos-gith/salagdinova-art/main/seed/media/cover.jpg",
+							"alt": "Stepped grey concrete collage",
+							"filename": "cover.jpg"
+						}
+					}
+				},
+				"translationOf": "page-home-en"
+			},
+			{
+				"id": "page-about-en",
+				"slug": "about",
+				"locale": "en",
+				"status": "published",
+				"data": {
+					"title": "About",
+					"content": [
+						{
+							"_type": "block",
+							"_key": "k002",
+							"style": "h2",
+							"children": [
+								{
+									"_type": "span",
+									"_key": "k001",
+									"text": "Education",
+									"marks": []
+								}
+							],
+							"markDefs": []
+						},
+						{
+							"_type": "block",
+							"_key": "k005",
+							"style": "normal",
+							"children": [
+								{
+									"_type": "span",
+									"_key": "k003",
+									"text": "2023–2027  ",
+									"marks": [
+										"em"
+									]
+								},
+								{
+									"_type": "span",
+									"_key": "k004",
+									"text": "Politecnico di Milano, Milan. Bachelor of Science in Architectural Design",
+									"marks": []
+								}
+							],
+							"markDefs": []
+						},
+						{
+							"_type": "block",
+							"_key": "k009",
+							"style": "normal",
+							"children": [
+								{
+									"_type": "span",
+									"_key": "k006",
+									"text": "2022–2023  ",
+									"marks": [
+										"em"
+									]
+								},
+								{
+									"_type": "span",
+									"_key": "k008",
+									"text": "Università Ca’ Foscari, Venice. Foundation program in Architecture, Art & Design. ",
+									"marks": []
+								},
+								{
+									"_type": "span",
+									"_key": "k007",
+									"text": "Ranked top student of the track.",
+									"marks": [
+										"em"
+									]
+								}
+							],
+							"markDefs": []
+						},
+						{
+							"_type": "block",
+							"_key": "k011",
+							"style": "h2",
+							"children": [
+								{
+									"_type": "span",
+									"_key": "k010",
+									"text": "Competitions",
+									"marks": []
+								}
+							],
+							"markDefs": []
+						},
+						{
+							"_type": "block",
+							"_key": "k014",
+							"style": "normal",
+							"children": [
+								{
+									"_type": "span",
+									"_key": "k013",
+									"text": "Buildner’s Architect’s Stair. ",
+									"marks": []
+								},
+								{
+									"_type": "span",
+									"_key": "k012",
+									"text": "Shortlisted project.",
+									"marks": [
+										"em"
+									]
+								}
+							],
+							"markDefs": []
+						},
+						{
+							"_type": "block",
+							"_key": "k016",
+							"style": "normal",
+							"children": [
+								{
+									"_type": "span",
+									"_key": "k015",
+									"text": "Buildner’s Unbuilt International Poster Competition",
+									"marks": []
+								}
+							],
+							"markDefs": []
+						},
+						{
+							"_type": "block",
+							"_key": "k018",
+							"style": "h2",
+							"children": [
+								{
+									"_type": "span",
+									"_key": "k017",
+									"text": "Work experience",
+									"marks": []
+								}
+							],
+							"markDefs": []
+						},
+						{
+							"_type": "block",
+							"_key": "k021",
+							"style": "normal",
+							"children": [
+								{
+									"_type": "span",
+									"_key": "k019",
+									"text": "Oct–Dec 2025  ",
+									"marks": [
+										"em"
+									]
+								},
+								{
+									"_type": "span",
+									"_key": "k020",
+									"text": "Design & Health Lab, ABCLAB Polimi (W.H.O. Collaborating Centre), Milan. Research, initial design proposal, 3D modelling and a short animation of a research lab for EssilorLuxottica.",
+									"marks": []
+								}
+							],
+							"markDefs": []
+						},
+						{
+							"_type": "block",
+							"_key": "k023",
+							"style": "h2",
+							"children": [
+								{
+									"_type": "span",
+									"_key": "k022",
+									"text": "Languages",
+									"marks": []
+								}
+							],
+							"markDefs": []
+						},
+						{
+							"_type": "block",
+							"_key": "k025",
+							"style": "normal",
+							"children": [
+								{
+									"_type": "span",
+									"_key": "k024",
+									"text": "English (fluent), Italian (B1), Russian (native), Kazakh (B1)",
+									"marks": []
+								}
+							],
+							"markDefs": []
+						},
+						{
+							"_type": "block",
+							"_key": "k027",
+							"style": "h2",
+							"children": [
+								{
+									"_type": "span",
+									"_key": "k026",
+									"text": "Skills",
+									"marks": []
+								}
+							],
+							"markDefs": []
+						},
+						{
+							"_type": "block",
+							"_key": "k029",
+							"style": "normal",
+							"children": [
+								{
+									"_type": "span",
+									"_key": "k028",
+									"text": "AutoCAD, Rhino 3D, Adobe Photoshop, Adobe Illustrator, Adobe InDesign, model-making",
+									"marks": []
+								}
+							],
+							"markDefs": []
+						},
+						{
+							"_type": "block",
+							"_key": "k031",
+							"style": "h2",
+							"children": [
+								{
+									"_type": "span",
+									"_key": "k030",
+									"text": "Interests",
+									"marks": []
+								}
+							],
+							"markDefs": []
+						},
+						{
+							"_type": "block",
+							"_key": "k033",
+							"style": "normal",
+							"children": [
+								{
+									"_type": "span",
+									"_key": "k032",
+									"text": "Art, literature, journalism, drumming, film photography",
+									"marks": []
+								}
+							],
+							"markDefs": []
+						}
+					],
+					"image": {
+						"$media": {
+							"url": "https://raw.githubusercontent.com/aosaos-gith/salagdinova-art/main/seed/media/portrait.jpg",
+							"alt": "Maria Salagdinova behind the sectional model of [brick]",
+							"filename": "portrait.jpg"
+						}
+					}
+				}
+			},
+			{
+				"id": "page-about-it",
+				"slug": "about",
+				"locale": "it",
+				"status": "published",
+				"data": {
+					"title": "Chi sono",
+					"content": [
+						{
+							"_type": "block",
+							"_key": "k035",
+							"style": "h2",
+							"children": [
+								{
+									"_type": "span",
+									"_key": "k034",
+									"text": "Formazione",
+									"marks": []
+								}
+							],
+							"markDefs": []
+						},
+						{
+							"_type": "block",
+							"_key": "k038",
+							"style": "normal",
+							"children": [
+								{
+									"_type": "span",
+									"_key": "k036",
+									"text": "2023–2027  ",
+									"marks": [
+										"em"
+									]
+								},
+								{
+									"_type": "span",
+									"_key": "k037",
+									"text": "Politecnico di Milano, Milano. Laurea triennale in Progettazione dell’Architettura",
+									"marks": []
+								}
+							],
+							"markDefs": []
+						},
+						{
+							"_type": "block",
+							"_key": "k042",
+							"style": "normal",
+							"children": [
+								{
+									"_type": "span",
+									"_key": "k039",
+									"text": "2022–2023  ",
+									"marks": [
+										"em"
+									]
+								},
+								{
+									"_type": "span",
+									"_key": "k041",
+									"text": "Università Ca’ Foscari, Venezia. Foundation program in Architecture, Art & Design. ",
+									"marks": []
+								},
+								{
+									"_type": "span",
+									"_key": "k040",
+									"text": "Prima classificata del percorso.",
+									"marks": [
+										"em"
+									]
+								}
+							],
+							"markDefs": []
+						},
+						{
+							"_type": "block",
+							"_key": "k044",
+							"style": "h2",
+							"children": [
+								{
+									"_type": "span",
+									"_key": "k043",
+									"text": "Concorsi",
+									"marks": []
+								}
+							],
+							"markDefs": []
+						},
+						{
+							"_type": "block",
+							"_key": "k047",
+							"style": "normal",
+							"children": [
+								{
+									"_type": "span",
+									"_key": "k046",
+									"text": "Buildner’s Architect’s Stair. ",
+									"marks": []
+								},
+								{
+									"_type": "span",
+									"_key": "k045",
+									"text": "Progetto in shortlist.",
+									"marks": [
+										"em"
+									]
+								}
+							],
+							"markDefs": []
+						},
+						{
+							"_type": "block",
+							"_key": "k049",
+							"style": "normal",
+							"children": [
+								{
+									"_type": "span",
+									"_key": "k048",
+									"text": "Buildner’s Unbuilt International Poster Competition",
+									"marks": []
+								}
+							],
+							"markDefs": []
+						},
+						{
+							"_type": "block",
+							"_key": "k051",
+							"style": "h2",
+							"children": [
+								{
+									"_type": "span",
+									"_key": "k050",
+									"text": "Esperienza",
+									"marks": []
+								}
+							],
+							"markDefs": []
+						},
+						{
+							"_type": "block",
+							"_key": "k054",
+							"style": "normal",
+							"children": [
+								{
+									"_type": "span",
+									"_key": "k052",
+									"text": "Ott–Dic 2025  ",
+									"marks": [
+										"em"
+									]
+								},
+								{
+									"_type": "span",
+									"_key": "k053",
+									"text": "Design & Health Lab, ABCLAB Polimi (Centro Collaboratore OMS), Milano. Ricerca, proposta progettuale iniziale, modellazione 3D e una breve animazione di un laboratorio di ricerca per EssilorLuxottica.",
+									"marks": []
+								}
+							],
+							"markDefs": []
+						},
+						{
+							"_type": "block",
+							"_key": "k056",
+							"style": "h2",
+							"children": [
+								{
+									"_type": "span",
+									"_key": "k055",
+									"text": "Lingue",
+									"marks": []
+								}
+							],
+							"markDefs": []
+						},
+						{
+							"_type": "block",
+							"_key": "k058",
+							"style": "normal",
+							"children": [
+								{
+									"_type": "span",
+									"_key": "k057",
+									"text": "Inglese (fluente), italiano (B1), russo (madrelingua), kazako (B1)",
+									"marks": []
+								}
+							],
+							"markDefs": []
+						},
+						{
+							"_type": "block",
+							"_key": "k060",
+							"style": "h2",
+							"children": [
+								{
+									"_type": "span",
+									"_key": "k059",
+									"text": "Competenze",
+									"marks": []
+								}
+							],
+							"markDefs": []
+						},
+						{
+							"_type": "block",
+							"_key": "k062",
+							"style": "normal",
+							"children": [
+								{
+									"_type": "span",
+									"_key": "k061",
+									"text": "AutoCAD, Rhino 3D, Adobe Photoshop, Adobe Illustrator, Adobe InDesign, modellistica",
+									"marks": []
+								}
+							],
+							"markDefs": []
+						},
+						{
+							"_type": "block",
+							"_key": "k064",
+							"style": "h2",
+							"children": [
+								{
+									"_type": "span",
+									"_key": "k063",
+									"text": "Interessi",
+									"marks": []
+								}
+							],
+							"markDefs": []
+						},
+						{
+							"_type": "block",
+							"_key": "k066",
+							"style": "normal",
+							"children": [
+								{
+									"_type": "span",
+									"_key": "k065",
+									"text": "Arte, letteratura, giornalismo, batteria, fotografia analogica",
+									"marks": []
+								}
+							],
+							"markDefs": []
+						}
+					],
+					"image": {
+						"$media": {
+							"url": "https://raw.githubusercontent.com/aosaos-gith/salagdinova-art/main/seed/media/portrait.jpg",
+							"alt": "Maria Salagdinova behind the sectional model of [brick]",
+							"filename": "portrait.jpg"
+						}
+					}
+				},
+				"translationOf": "page-about-en"
+			},
+			{
+				"id": "page-about-ru",
+				"slug": "about",
+				"locale": "ru",
+				"status": "published",
+				"data": {
+					"title": "Обо мне",
+					"content": [
+						{
+							"_type": "block",
+							"_key": "k068",
+							"style": "h2",
+							"children": [
+								{
+									"_type": "span",
+									"_key": "k067",
+									"text": "Образование",
+									"marks": []
+								}
+							],
+							"markDefs": []
+						},
+						{
+							"_type": "block",
+							"_key": "k071",
+							"style": "normal",
+							"children": [
+								{
+									"_type": "span",
+									"_key": "k069",
+									"text": "2023–2027  ",
+									"marks": [
+										"em"
+									]
+								},
+								{
+									"_type": "span",
+									"_key": "k070",
+									"text": "Politecnico di Milano, Милан. Бакалавриат по архитектурному проектированию",
+									"marks": []
+								}
+							],
+							"markDefs": []
+						},
+						{
+							"_type": "block",
+							"_key": "k075",
+							"style": "normal",
+							"children": [
+								{
+									"_type": "span",
+									"_key": "k072",
+									"text": "2022–2023  ",
+									"marks": [
+										"em"
+									]
+								},
+								{
+									"_type": "span",
+									"_key": "k074",
+									"text": "Università Ca’ Foscari, Венеция. Подготовительная программа по архитектуре, искусству и дизайну. ",
+									"marks": []
+								},
+								{
+									"_type": "span",
+									"_key": "k073",
+									"text": "Лучшая студентка направления.",
+									"marks": [
+										"em"
+									]
+								}
+							],
+							"markDefs": []
+						},
+						{
+							"_type": "block",
+							"_key": "k077",
+							"style": "h2",
+							"children": [
+								{
+									"_type": "span",
+									"_key": "k076",
+									"text": "Конкурсы",
+									"marks": []
+								}
+							],
+							"markDefs": []
+						},
+						{
+							"_type": "block",
+							"_key": "k080",
+							"style": "normal",
+							"children": [
+								{
+									"_type": "span",
+									"_key": "k079",
+									"text": "Buildner’s Architect’s Stair. ",
+									"marks": []
+								},
+								{
+									"_type": "span",
+									"_key": "k078",
+									"text": "Проект в шорт-листе.",
+									"marks": [
+										"em"
+									]
+								}
+							],
+							"markDefs": []
+						},
+						{
+							"_type": "block",
+							"_key": "k082",
+							"style": "normal",
+							"children": [
+								{
+									"_type": "span",
+									"_key": "k081",
+									"text": "Buildner’s Unbuilt International Poster Competition",
+									"marks": []
+								}
+							],
+							"markDefs": []
+						},
+						{
+							"_type": "block",
+							"_key": "k084",
+							"style": "h2",
+							"children": [
+								{
+									"_type": "span",
+									"_key": "k083",
+									"text": "Опыт работы",
+									"marks": []
+								}
+							],
+							"markDefs": []
+						},
+						{
+							"_type": "block",
+							"_key": "k087",
+							"style": "normal",
+							"children": [
+								{
+									"_type": "span",
+									"_key": "k085",
+									"text": "Окт–дек 2025  ",
+									"marks": [
+										"em"
+									]
+								},
+								{
+									"_type": "span",
+									"_key": "k086",
+									"text": "Design & Health Lab, ABCLAB Polimi (сотрудничающий центр ВОЗ), Милан. Исследование, первоначальное проектное предложение, 3D-моделирование и короткая анимация исследовательской лаборатории для EssilorLuxottica.",
+									"marks": []
+								}
+							],
+							"markDefs": []
+						},
+						{
+							"_type": "block",
+							"_key": "k089",
+							"style": "h2",
+							"children": [
+								{
+									"_type": "span",
+									"_key": "k088",
+									"text": "Языки",
+									"marks": []
+								}
+							],
+							"markDefs": []
+						},
+						{
+							"_type": "block",
+							"_key": "k091",
+							"style": "normal",
+							"children": [
+								{
+									"_type": "span",
+									"_key": "k090",
+									"text": "Английский (свободно), итальянский (B1), русский (родной), казахский (B1)",
+									"marks": []
+								}
+							],
+							"markDefs": []
+						},
+						{
+							"_type": "block",
+							"_key": "k093",
+							"style": "h2",
+							"children": [
+								{
+									"_type": "span",
+									"_key": "k092",
+									"text": "Навыки",
+									"marks": []
+								}
+							],
+							"markDefs": []
+						},
+						{
+							"_type": "block",
+							"_key": "k095",
+							"style": "normal",
+							"children": [
+								{
+									"_type": "span",
+									"_key": "k094",
+									"text": "AutoCAD, Rhino 3D, Adobe Photoshop, Adobe Illustrator, Adobe InDesign, макетирование",
+									"marks": []
+								}
+							],
+							"markDefs": []
+						},
+						{
+							"_type": "block",
+							"_key": "k097",
+							"style": "h2",
+							"children": [
+								{
+									"_type": "span",
+									"_key": "k096",
+									"text": "Интересы",
+									"marks": []
+								}
+							],
+							"markDefs": []
+						},
+						{
+							"_type": "block",
+							"_key": "k099",
+							"style": "normal",
+							"children": [
+								{
+									"_type": "span",
+									"_key": "k098",
+									"text": "Искусство, литература, журналистика, ударные, плёночная фотография",
+									"marks": []
+								}
+							],
+							"markDefs": []
+						}
+					],
+					"image": {
+						"$media": {
+							"url": "https://raw.githubusercontent.com/aosaos-gith/salagdinova-art/main/seed/media/portrait.jpg",
+							"alt": "Maria Salagdinova behind the sectional model of [brick]",
+							"filename": "portrait.jpg"
+						}
+					}
+				},
+				"translationOf": "page-about-en"
+			},
+			{
+				"id": "page-contact-en",
+				"slug": "contact",
+				"locale": "en",
+				"status": "published",
+				"data": {
+					"title": "Contact",
+					"content": [
+						{
+							"_type": "block",
+							"_key": "k101",
+							"style": "h2",
+							"children": [
+								{
+									"_type": "span",
+									"_key": "k100",
+									"text": "Email",
+									"marks": []
+								}
+							],
+							"markDefs": []
+						},
+						{
+							"_type": "block",
+							"_key": "k104",
+							"style": "normal",
+							"children": [
+								{
+									"_type": "span",
+									"_key": "k103",
+									"text": "salagdinova.maria@gmail.com",
+									"marks": [
+										"k102"
+									]
+								}
+							],
+							"markDefs": [
+								{
+									"_type": "link",
+									"_key": "k102",
+									"href": "mailto:salagdinova.maria@gmail.com"
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "k106",
+							"style": "h2",
+							"children": [
+								{
+									"_type": "span",
+									"_key": "k105",
+									"text": "Based in",
+									"marks": []
+								}
+							],
+							"markDefs": []
+						},
+						{
+							"_type": "block",
+							"_key": "k108",
+							"style": "normal",
+							"children": [
+								{
+									"_type": "span",
+									"_key": "k107",
+									"text": "Milan, Italy",
+									"marks": []
+								}
+							],
+							"markDefs": []
+						}
+					]
+				}
+			},
+			{
+				"id": "page-contact-it",
+				"slug": "contact",
+				"locale": "it",
+				"status": "published",
+				"data": {
+					"title": "Contatti",
+					"content": [
+						{
+							"_type": "block",
+							"_key": "k110",
+							"style": "h2",
+							"children": [
+								{
+									"_type": "span",
+									"_key": "k109",
+									"text": "Email",
+									"marks": []
+								}
+							],
+							"markDefs": []
+						},
+						{
+							"_type": "block",
+							"_key": "k113",
+							"style": "normal",
+							"children": [
+								{
+									"_type": "span",
+									"_key": "k112",
+									"text": "salagdinova.maria@gmail.com",
+									"marks": [
+										"k111"
+									]
+								}
+							],
+							"markDefs": [
+								{
+									"_type": "link",
+									"_key": "k111",
+									"href": "mailto:salagdinova.maria@gmail.com"
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "k115",
+							"style": "h2",
+							"children": [
+								{
+									"_type": "span",
+									"_key": "k114",
+									"text": "Base",
+									"marks": []
+								}
+							],
+							"markDefs": []
+						},
+						{
+							"_type": "block",
+							"_key": "k117",
+							"style": "normal",
+							"children": [
+								{
+									"_type": "span",
+									"_key": "k116",
+									"text": "Milano, Italia",
+									"marks": []
+								}
+							],
+							"markDefs": []
+						}
+					]
+				},
+				"translationOf": "page-contact-en"
+			},
+			{
+				"id": "page-contact-ru",
+				"slug": "contact",
+				"locale": "ru",
+				"status": "published",
+				"data": {
+					"title": "Контакты",
+					"content": [
+						{
+							"_type": "block",
+							"_key": "k119",
+							"style": "h2",
+							"children": [
+								{
+									"_type": "span",
+									"_key": "k118",
+									"text": "Почта",
+									"marks": []
+								}
+							],
+							"markDefs": []
+						},
+						{
+							"_type": "block",
+							"_key": "k122",
+							"style": "normal",
+							"children": [
+								{
+									"_type": "span",
+									"_key": "k121",
+									"text": "salagdinova.maria@gmail.com",
+									"marks": [
+										"k120"
+									]
+								}
+							],
+							"markDefs": [
+								{
+									"_type": "link",
+									"_key": "k120",
+									"href": "mailto:salagdinova.maria@gmail.com"
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "k124",
+							"style": "h2",
+							"children": [
+								{
+									"_type": "span",
+									"_key": "k123",
+									"text": "Город",
+									"marks": []
+								}
+							],
+							"markDefs": []
+						},
+						{
+							"_type": "block",
+							"_key": "k126",
+							"style": "normal",
+							"children": [
+								{
+									"_type": "span",
+									"_key": "k125",
+									"text": "Милан, Италия",
+									"marks": []
+								}
+							],
+							"markDefs": []
+						}
+					]
+				},
+				"translationOf": "page-contact-en"
+			}
+		]
+	}
+}

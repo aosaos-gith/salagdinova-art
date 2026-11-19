@@ -1,0 +1,83 @@
+---
+import { Image, PortableText } from "emdash/ui";
+import Base from "../layouts/Base.astro";
+import Credits from "../components/Credits.astro";
+import { localePath, t, type Locale } from "../i18n";
+import { getPage, getProjects } from "../utils/content";
+import { absoluteImageUrl, isLandscape } from "../utils/media";
+
+interface Props {
+	locale: Locale;
+}
+const { locale } = Astro.props;
+
+const [pageResult, projectsResult] = await Promise.all([
+	getPage("home", locale),
+	getProjects(locale),
+]);
+if (Astro.cache?.enabled) {
+	if (pageResult.cacheHint) Astro.cache.set(pageResult.cacheHint);
+	if (projectsResult.cacheHint) Astro.cache.set(projectsResult.cacheHint);
+}
+const home = pageResult.entry;
+const projects = projectsResult.entries;
+const cover = home?.data.image;
+---
+
+<Base
+	locale={locale}
+	tone="dark"
+	overlay
+	image={cover ? absoluteImageUrl(cover, Astro.url.origin) : undefined}
+	content={home ? { collection: "pages", id: home.data.id, slug: "home" } : undefined}
+>
+	<section class="cover">
+		{
+			cover && (
+				<div class="cover__image">
+					<Image image={cover} sizes="(min-width: 760px) 40vw, 80vw" priority />
+				</div>
+			)
+		}
+		{
+			home?.data.content && home.data.content.length > 0 && (
+				<div class="cover__text">
+					<PortableText value={home.data.content} />
+				</div>
+			)
+		}
+	</section>
+
+	<div id="projects" class="openers">
+		<h1 class="visually-hidden">{t(locale, "projects")}</h1>
+		{
+			projects.map((project, i) => (
+				<a class:list={["opener", isLandscape(project.data.cover) && "opener--bleed"]} href={localePath(locale, `/projects/${project.data.slug ?? project.id}`)}>
+					<div class="opener__image">
+						{project.data.cover && (
+							<Image
+								image={project.data.cover}
+								alt=""
+								sizes="100vw"
+								priority={i === 0}
+							/>
+						)}
+					</div>
+					<div class="opener__head">
+						<h2>{project.data.title}</h2>
+						{project.data.place && <p>{project.data.place}</p>}
+					</div>
+					<div class="opener__foot">
+						<Credits
+							course={project.data.course}
+							year={project.data.year}
+							professors={project.data.professors}
+							team={project.data.team}
+						/>
+					</div>
+				</a>
+			))
+		}
+		{projects.length === 0 && <p class="empty">{t(locale, "comingSoon")}</p>}
+	</div>
+</Base>

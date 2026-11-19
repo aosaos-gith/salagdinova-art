@@ -1,0 +1,8 @@
+---
+import NotFoundView from "../views/NotFoundView.astro";
+import { toLocale } from "../i18n";
+
+const locale = toLocale(Astro.url.pathname.match(/^\/(it|ru)(\/|$)/)?.[1]);
+---
+
+<NotFoundView locale={locale} />

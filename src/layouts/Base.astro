@@ -1,0 +1,161 @@
+---
+import { getSiteSettingsWithCacheHint } from "emdash";
+import { EmDashBodyEnd, EmDashBodyStart, EmDashHead } from "emdash/ui";
+import { createPublicPageContext } from "emdash/page";
+import {
+	LOCALES,
+	LOCALE_NAMES,
+	localePath,
+	stripLocale,
+	t,
+	type Locale,
+} from "../i18n";
+// Jost: a free geometric sans close to Futura, the face of Maria's portfolio.
+// Self-hosted from npm, so no requests to Google. 400 ≈ Futura Book, 500 ≈ Demi.
+import "@fontsource/jost/400.css";
+import "@fontsource/jost/400-italic.css";
+import "@fontsource/jost/500.css";
+import "../styles/global.css";
+
+interface Props {
+	locale: Locale;
+	title?: string;
+	description?: string | null;
+	image?: string | null;
+	robots?: string | null;
+	type?: "website" | "article";
+	content?: { collection: string; id: string; slug?: string | null };
+	/** Page background: dark (black) or light (white). */
+	tone?: "dark" | "light";
+	/** Header sits on top of a dark full-bleed hero. */
+	overlay?: boolean;
+	/** Paths of this page in other locales, when they differ. */
+	alternates?: Partial<Record<Locale, string>>;
+}
+
+const {
+	locale,
+	title,
+	description,
+	image,
+	robots,
+	type = "website",
+	content,
+	tone = "light",
+	overlay = false,
+	alternates = {},
+} = Astro.props;
+
+const settingsResult = await getSiteSettingsWithCacheHint();
+if (Astro.cache?.enabled) Astro.cache.set(settingsResult.cacheHint);
+const settings = settingsResult.data;
+
+const siteTitle = settings?.title || "Maria Salagdinova";
+const fullTitle = title && title !== siteTitle ? `${title} — ${siteTitle}` : siteTitle;
+
+const pageCtx = createPublicPageContext({
+	Astro,
+	kind: content ? "content" : "custom",
+	pageType: type,
+	title: fullTitle,
+	pageTitle: title ?? siteTitle,
+	description: description || settings?.tagline || undefined,
+	canonical: new URL(Astro.url.pathname, Astro.url.origin).href,
+	image,
+	content,
+	seo: { ogImage: image, robots },
+	siteName: siteTitle,
+});
+
+const basePath = stripLocale(Astro.url.pathname);
+const langLinks = LOCALES.map((code) => ({
+	code,
+	name: LOCALE_NAMES[code],
+	href: alternates[code] ?? localePath(code, basePath),
+	current: code === locale,
+}));
+
+const home = localePath(locale, "/");
+const nav = [
+	{ href: `${home}#projects`, label: t(locale, "projects"), match: "/projects" },
+	{ href: localePath(locale, "/about"), label: t(locale, "about"), match: "/about" },
+	{ href: localePath(locale, "/contact"), label: t(locale, "contact"), match: "/contact" },
+];
+const isLoggedIn = Boolean(Astro.locals.user);
+const year = new Date().getFullYear();
+---
+
+<!doctype html>
+<html lang={locale} class={`tone-${tone}`}>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="color-scheme" content={tone === "dark" ? "dark" : "light"} />
+		<title>{fullTitle}</title>
+		<EmDashHead page={pageCtx} />
+		<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+	</head>
+	<body>
+		<EmDashBodyStart page={pageCtx} />
+		<a href="#main" class="skip-link">{t(locale, "skip")}</a>
+		<header class:list={["site-header", overlay && "site-header--overlay"]}>
+			<a href={home} class="site-name" aria-current={basePath === "/" ? "page" : undefined}>
+				{siteTitle}
+			</a>
+			<nav class="site-nav" aria-label="Main">
+				<ul>
+					{
+						nav.map((item) => (
+							<li>
+								<a
+									href={item.href}
+									aria-current={
+										item.match !== "/projects" && basePath === item.match
+											? "page"
+											: undefined
+									}
+								>
+									{item.label}
+								</a>
+							</li>
+						))
+					}
+					{
+						isLoggedIn && (
+							<li>
+								<a href="/_emdash/admin">Admin</a>
+							</li>
+						)
+					}
+				</ul>
+				<ul class="lang" aria-label={t(locale, "language")}>
+					{
+						langLinks.map((link) => (
+							<li>
+								<a
+									href={link.href}
+									hreflang={link.code}
+									lang={link.code}
+									title={link.name}
+									aria-current={link.current ? "true" : undefined}
+								>
+									{link.code.toUpperCase()}
+								</a>
+							</li>
+						))
+					}
+				</ul>
+			</nav>
+		</header>
+
+		<main id="main" tabindex="-1">
+			<slot />
+		</main>
+
+		<footer class="site-footer">
+			<p>© {year} {siteTitle}</p>
+			<p><a href="#main">↑</a></p>
+		</footer>
+		<EmDashBodyEnd page={pageCtx} />
+	</body>
+</html>

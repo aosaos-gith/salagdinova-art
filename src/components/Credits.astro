@@ -1,0 +1,20 @@
+---
+import { names } from "../utils/content";
+
+interface Props {
+	course?: string | null;
+	year?: string | null;
+	professors?: string | null;
+	team?: string | null;
+}
+const { course, year, professors, team } = Astro.props;
+const courseLine = [course, year].filter(Boolean).join(", ");
+const profs = names(professors);
+const members = names(team);
+---
+
+<div class="credits">
+	{courseLine && <p class="credits__course">{courseLine}</p>}
+	{profs.length > 0 && <p>{profs.length > 1 ? "Profs." : "Prof."} {profs.join(", ")}</p>}
+	{members.length > 0 && <p class="credits__team">{members.join(", ")}</p>}
+</div>
